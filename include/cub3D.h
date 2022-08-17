@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/13 20:13:57 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:34:37 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,36 @@
 #include "mlx.h"
 #include "../libft/libft.h"
 
-int     ft_check_extension(char *path, char *ext);
-int				get_next_line(int fd, char **line);
+int         ft_check_extension(char *path, char *ext);
+int         get_next_line(int fd, char **line);
+void    get_rows_cols(int fd);
+void    allocate_matrix(int rows, int cols);
+void    create_matrix(int fd, int cols);
+void    init_map(int fd, char **argv);
 
-typedef struct s_RowsCols
+struct s_map
 {
-    int     rows;
-    int     cols;
-}           t_RowsCols;
+    char *no;
+    char *so;
+    char *we;
+    char *ea;
+    int f_red;
+    int f_green;
+    int f_blue;
+    int c_red;
+    int c_green;
+    int c_blue;
+    char **matrix;
+    int  rows;
+    int  cols;
+}           t_map;
+
+
+typedef struct s_game
+{
+    void	*mlx;
+	void	*mlx_win;
+    struct s_map   map;
+}               t_game;
 
 #endif

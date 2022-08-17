@@ -12,40 +12,19 @@
 
 #include "../include/cub3D.h"
 
-// void	ft_exit(char *str)
-// {
-// 	ft_putstr_fd(str, 1);
-// 	write(1, "\n", 1);
-// 	exit(0);
-// }
-
-// int main(int argc, char **argv)
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	int		fd;
-
-// 	if (argc == 2)
-// 	{
-// 		fd = open(argv[1], O_RDONLY);
-// 		if (!(ft_check_extension(argv[1], ".cub")))
-// 			ft_exit("Invalid file");
-// 		mlx = mlx_init();
-// 		mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
-// 		mlx_loop(mlx);
-// 	}
-// 	return (0);
-// }
-t_RowsCols matrix_row_col(int fd)
+void	ft_exit(char *str)
 {
-    t_RowsCols  s;
+	ft_putstr_fd(str, 1);
+	write(1, "\n", 1);
+	exit(0);
+}
+
+int		map_height(int fd)
+{
     char        *line;
     int         row;
-    int         col;
     int         ret;
-    int         max_col;
-    
-    max_col = 0;
+
     line = NULL;
     row = 0;
     ret = 1;
@@ -55,61 +34,38 @@ t_RowsCols matrix_row_col(int fd)
         ret = get_next_line(fd, &line);
         row++;
         free(line);
-        col = ft_gnl_strlen(line);
-        
-        if (col > max_col)
-            max_col = col;
         
         if (!ret)
             break ;
     }
-    s.rows = row;
-    s.cols = max_col;
-    return s;
+    return row;
 }
 
-void create_initial_matrix(int rows, int cols)
+int main(int argc, char **argv)
 {
-	int matrix[rows][cols];
-	int i = 0;
-	int j = 0;
-	
-	while (i < rows)
+	int		fd;
+
+	if (argc == 2)
 	{
-		j = 0;
-		while (j < cols)
+		fd = open(argv[1], O_RDONLY);
+		init_map(fd, argv);
+
+		for (int i = 0; i < t_map.rows; i++)
 		{
-			matrix[i][j] = 1;
-			j++;
+			for (int j = 0; j < t_map.cols; j++)
+			{
+				printf("%c", t_map.matrix[i][j]);
+			}
+			printf("\n");
 		}
-		i++;
+		
+		if (!(ft_check_extension(argv[1], ".cub")))
+			ft_exit("Invalid file");
+		// mlx = mlx_init();
+		// mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
+		// mlx_loop(mlx);
+		close(fd);
+
 	}
-
-	i = 0;
-	
-	while (i < rows)
-	{
-		j = 0;
-		while (j < cols)
-		{
-			printf("%d ", matrix[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
-
-int main()
-{
-	t_RowsCols result;
-    int fd = open("./maps/2.cub", O_RDONLY);
-    
-    result = matrix_row_col(fd);
-
-	printf("%d\n", result.rows);
-    printf("%d", result.cols);
-	printf("\n");
-	create_initial_matrix(result.rows, result.cols);
-    return (0);
+	return (0);
 }
