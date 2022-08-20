@@ -19,28 +19,6 @@ void	ft_exit(char *str)
 	exit(0);
 }
 
-int		map_height(int fd)
-{
-    char        *line;
-    int         row;
-    int         ret;
-
-    line = NULL;
-    row = 0;
-    ret = 1;
-    
-    while (ret)
-    {
-        ret = get_next_line(fd, &line);
-        row++;
-        free(line);
-        
-        if (!ret)
-            break ;
-    }
-    return row;
-}
-
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -48,23 +26,19 @@ int main(int argc, char **argv)
 	if (argc == 2)
 	{
 		fd = open(argv[1], O_RDONLY);
-		init_map(fd, argv);
-
-		for (int i = 0; i < t_map.rows; i++)
-		{
-			for (int j = 0; j < t_map.cols; j++)
-			{
-				printf("%c", t_map.matrix[i][j]);
-			}
-			printf("\n");
-		}
-		
+		if (fd == -1)
+			ft_exit("Failed opening file");
 		if (!(ft_check_extension(argv[1], ".cub")))
 			ft_exit("Invalid file");
+		// init_map(fd, argv);
+
+		// init();    					///////FOR STACK INIT
+		parsing(fd, argv[1]);
+		close(fd);
+
 		// mlx = mlx_init();
 		// mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
 		// mlx_loop(mlx);
-		close(fd);
 
 	}
 	return (0);

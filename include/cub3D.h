@@ -12,7 +12,7 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
-#define BUFFER_SIZE 1
+# define BUFFER_SIZE 1
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -27,14 +27,31 @@ int         get_next_line(int fd, char **line);
 void    get_rows_cols(int fd);
 void    allocate_matrix(int rows, int cols);
 void    create_matrix(int fd, int cols);
-void    init_map(int fd, char **argv);
+// void    init_map(int fd, char **argv);
+void    parsing(int fd, lichar *argv)
+
+typedef struct	s_data
+{
+    char*       path;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			height;
+	int			width;
+}				t_data;
 
 struct s_map
 {
-    char *no;
-    char *so;
-    char *we;
-    char *ea;
+    // char *no;
+    // char *so;
+    // char *we;
+    // char *ea;
+    t_data NO_texture;
+    t_data SO_texture;
+    t_data WE_texture;
+    t_data EA_texture;
     int f_red;
     int f_green;
     int f_blue;
@@ -46,12 +63,10 @@ struct s_map
     int  cols;
 }           t_map;
 
-
 typedef struct s_game
 {
     void	*mlx;
 	void	*mlx_win;
-    struct s_map   map;
 }               t_game;
 
 #endif
