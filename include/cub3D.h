@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/17 19:34:37 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:43:21 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void        parsing(int fd);
 int		    ft_isspace(char *str);
 int     check_map_name(char *string, char *ext);
 int		check_ext(char *path, char *ext);
-
+int     check_colors();
 typedef struct	s_texture
 {
     char        *path;

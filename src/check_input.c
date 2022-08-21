@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:39:03 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/17 19:39:15 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/08/21 18:12:05 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,14 @@ int     check_map_name(char *string, char *ext)
 {
     int i = 0;
     int len = ft_strlen(ext);
-    while (string[i])
+    while (string[i] )
         i++;
     while (len--)
         i--;
     if (string[i] == '.')
     {
-        if (ft_strncmp((string + i), ext, ft_strlen(ext)))
+        if (ft_strncmp((string + i-1), ext, ft_strlen(ext)))
 			return (1);
     }
 	return(0);
-}
-
-int		check_ext(char *path, char *ext)
-{
-	int i;
-
-	i = 0;
-	while (path[i] != '.')
-		i++;
-	if(ft_strncmp(path, ext, ft_strlen(ext)))
-		return (1);
-	return (0);
 }
