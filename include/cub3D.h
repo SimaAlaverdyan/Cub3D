@@ -24,23 +24,27 @@
 
 int         ft_check_extension(char *path, char *ext);
 int         get_next_line(int fd, char **line);
-void    get_rows_cols(int fd);
-void    allocate_matrix(int rows, int cols);
-void    create_matrix(int fd, int cols);
+void	    ft_exit(char *str);
+void        get_rows_cols(int fd);
+void        allocate_matrix(int rows, int cols);
+void        create_matrix(int fd, int cols);
 // void    init_map(int fd, char **argv);
-void    parsing(int fd, lichar *argv)
+void        parsing(int fd);
+int		    ft_isspace(char *str);
+int     check_map_name(char *string, char *ext);
+int		check_ext(char *path, char *ext);
 
-typedef struct	s_data
+typedef struct	s_texture
 {
-    char*       path;
-	void		*img;
-	char		*addr;
+    char        *path;
+	void        *img;
+	char        *addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
 	int			height;
 	int			width;
-}				t_data;
+}				t_texture;
 
 struct s_map
 {
@@ -48,16 +52,12 @@ struct s_map
     // char *so;
     // char *we;
     // char *ea;
-    t_data NO_texture;
-    t_data SO_texture;
-    t_data WE_texture;
-    t_data EA_texture;
-    int f_red;
-    int f_green;
-    int f_blue;
-    int c_red;
-    int c_green;
-    int c_blue;
+    t_texture no;
+    t_texture so;
+    t_texture we;
+    t_texture ea;
+    int f_color[3];
+    int c_color[3];
     char **matrix;
     int  rows;
     int  cols;

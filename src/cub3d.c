@@ -33,7 +33,9 @@ int main(int argc, char **argv)
 		// init_map(fd, argv);
 
 		// init();    					///////FOR STACK INIT
-		parsing(fd, argv[1]);
+		// printf("test1\n");
+		parsing(fd);
+		// printf("test4");
 		close(fd);
 
 		// mlx = mlx_init();

@@ -26,3 +26,31 @@ int     ft_check_extension(char *path, char *ext)
 		&& *(path + pathlen - 3) == *(ext + extlen - 3)
 		&& *(path + pathlen - 4) == *(ext + extlen - 4));
 }
+
+int     check_map_name(char *string, char *ext)
+{
+    int i = 0;
+    int len = ft_strlen(ext);
+    while (string[i])
+        i++;
+    while (len--)
+        i--;
+    if (string[i] == '.')
+    {
+        if (ft_strncmp((string + i), ext, ft_strlen(ext)))
+			return (1);
+    }
+	return(0);
+}
+
+int		check_ext(char *path, char *ext)
+{
+	int i;
+
+	i = 0;
+	while (path[i] != '.')
+		i++;
+	if(ft_strncmp(path, ext, ft_strlen(ext)))
+		return (1);
+	return (0);
+}
