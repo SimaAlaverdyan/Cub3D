@@ -35,7 +35,11 @@ int main(int argc, char **argv)
 		// init();    					///////FOR STACK INIT
 		parsing(fd);
 		close(fd);
-
+		// while (1)
+		// {
+		// 	/* code */
+		// }
+		
 		// mlx = mlx_init();
 		// mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
 		// mlx_loop(mlx);
