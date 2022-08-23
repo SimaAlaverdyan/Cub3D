@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/22 21:35:06 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/22 17:37:49 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,20 @@
 int			ft_check_extension(char *path, char *ext);
 int			get_next_line(int fd, char **line);
 void		ft_exit(char *str);
-void		get_rows_cols(int fd);
+void		get_cols(int fd);
+void    	init(int fd, char **argv);
 void		allocate_matrix(int rows, int cols);
-void		create_matrix(int fd, int cols);
+void    	create_matrix(int r, int c);
 void		parsing(int fd);
+void		parsing_map(int fd);
 int			ft_isspace(char *str);
 int			check_map_name(char *string, char *ext);
 int			check_ext(char *path, char *ext);
 int			check_colors(void);
-void		create_initial_matrix( int rows, int cols, int matrix[rows][cols]);
-void 		chack_init_matrix();
+int			ft_isspace(char *str);
+void		create_initial_matrix(int rows, int cols, char matrix[rows][cols]);
+void		r_and_c();
+char		**free_matrix(char **map);
 
 typedef struct s_texture
 {
@@ -56,9 +60,11 @@ struct s_map
 	t_texture	ea;
 	int			f_color[3];
 	int			c_color[3];
-	char		**matrix;
+	int			rows_tmp;
 	int			rows;
 	int			cols;
+	char		**tmp_map;
+	char		**matrix;
 }				t_map;
 
 typedef struct s_game

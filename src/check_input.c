@@ -61,3 +61,41 @@ int	check_colors(void)
 	}
 	return (1);
 }
+
+int	ft_isspace(char *str)
+{
+	int		i;
+	size_t		count;
+
+	count = 0;
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+	{
+		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
+			|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
+			count++;
+		i++;
+	}
+	if (count == ft_strlen(str))
+		return (1);
+	return (0);
+}
+
+char	**free_matrix(char **map)
+{
+	int	i;
+
+	i = 0;
+	if (map)
+	{
+		while (map[i])
+		{
+			free(map[i]);
+			i++;
+		}
+		free(map);
+	}
+	return (NULL);
+}

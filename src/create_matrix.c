@@ -12,34 +12,38 @@
 
 #include "../include/cub3D.h"
 
-void	get_rows_cols(int fd)
+void	get_cols(int fd)
 {
     char        *line;
-    int         row;
     int         col;
     int         ret;
     int         max_col;
-    
+
     max_col = 0;
     line = NULL;
-    row = 0;
     ret = 1;
-    
     while (ret)
     {
         ret = get_next_line(fd, &line);
-        row++;
         free(line);
-        col = ft_gnl_strlen(line);
-        
+        col = ft_strlen(line);
         if (col > max_col)
             max_col = col;
-        
         if (!ret)
             break ;
     }
-    t_map.rows = row;
     t_map.cols = max_col;
+    close(fd);
+}
+
+void    r_and_c()
+{
+    int i;
+
+    i = 0;
+    while (t_map.tmp_map[i] != 0)
+        i++;
+    t_map.rows = i;
 }
 
 void    allocate_matrix(int rows, int cols)
@@ -48,32 +52,46 @@ void    allocate_matrix(int rows, int cols)
 
     i = 0;
     t_map.matrix = (char **)malloc(sizeof(char *) * (rows));
+    if (!t_map.matrix)
+        ft_exit("Error: Malloc");
     while (i < rows)
         t_map.matrix[i++] = (char *)malloc(sizeof(char) * (cols));
 }
 
-void    create_matrix(int fd, int cols)
+void    create_matrix(int r, int c)
 {
-    int ret;
-    int i;
-    int j;
-    char *line;
+    int     i;
+    size_t  j;
 
+    allocate_matrix(r, c);    
     i = 0;
-    ret = 1;
-    line = NULL;
-    while (ret)
-    {
-        ret = get_next_line(fd, &line);
-        j = 0;
-        while (j < cols)
-        {
-            t_map.matrix[i][j] = line[j];
+    j = 0;
+    // while (i < r)
+    // {
+    //     j = 0;
+    //     while (j < c)
+    //     {
+    //         t_map.matrix[i][j] = '-';
+    //         j++;
+    //     }
+    //     i++;
+    // }
+
+    while (t_map.tmp_map[i] != 0)
+	{
+		while (j < ft_strlen(t_map.tmp_map[i]))
+		{
+            if (t_map.tmp_map[i][j] == ' ')
+                t_map.matrix[i][j] = '-';
+            else
+                t_map.matrix[i][j] = t_map.tmp_map[i][j];
             j++;
-        }
-        i++;
-        free(line);
-        if(!ret)
-            break;
-    }
+		// printf("%c\n", t_map.tmp_map[i++][j++]);
+		}
+        while ((int)j < t_map.cols)
+            t_map.matrix[i][j] = '-';
+        t_map.matrix[i][j] = '\0';
+		i++;
+	}
+    free_matrix(t_map.tmp_map);
 }

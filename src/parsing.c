@@ -40,23 +40,6 @@ void	parse_color(char *line, char mode)
 		ft_exit("Error: wrong color numbers");
 }
 
-int	ft_isspace(char *str)
-{
-	int		i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-	{
-		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\r'
-			|| str[i] == '\v' || str[i] == '\f' || str[i] == ' ')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 char	*parse_texture_path(char *line)
 {
 	char	*path;
@@ -78,7 +61,10 @@ char	*parse_texture_path(char *line)
 void	parsing_texture(char *line)
 {
 	while (*line == ' ')
+	{
+		t_map.rows_tmp++;
 		line++;
+	}
 	if (line[0] == 'N' && line[1] == 'O')
 		t_map.no.path = parse_texture_path(line + 2);
 	else if (line[0] == 'S' && line[1] == 'O')
@@ -96,21 +82,21 @@ void	parsing_texture(char *line)
 void	parsing(int fd)
 {
 	int		i;
-	//int		ret;
 	char	*line;
 
 	i = 0;
-	while (i < 8 && get_next_line(fd, &line))
+	t_map.rows_tmp = 0;
+	while (i < 6 && get_next_line(fd, &line))
 	{
+		t_map.rows_tmp++;
 		if (ft_strlen(line) == 0)
 			continue ;
 		else
-		{
 			parsing_texture(line);
-			i++;
-		}
+		i++;
 	}
 	if (t_map.ea.path == NULL || t_map.we.path == NULL
 		|| t_map.no.path == NULL || t_map.so.path == NULL)
 		ft_exit("Error: missing texture");
+	parsing_map(fd);
 }
