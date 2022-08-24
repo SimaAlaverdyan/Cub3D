@@ -1,6 +1,6 @@
 #include "../include/cub3D.h"
 
-char	*remove_empty_lines(int fd)
+char	*remove_empty_lines(int fd)				/////removing empty lines before F color
 {
 	int		res;
 	char	*line;
@@ -52,6 +52,4 @@ void    parsing_map(int fd)
 	close(fd);
 	r_and_c();
 	create_matrix(t_map.rows, t_map.cols);
-	
-	
 }

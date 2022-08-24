@@ -37,6 +37,8 @@ int main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 
 		parsing(fd);
+		// printf("%d\n", t_map.rows);
+		// printf("%d\n", t_map.cols);
 		close(fd);
 		// while (1)
 		// {
