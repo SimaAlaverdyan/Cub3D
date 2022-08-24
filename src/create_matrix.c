@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_matrix.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:00:27 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/22 20:00:59 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/08/24 22:08:35 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,19 +77,18 @@ void    create_matrix(int r, int c)
     //     i++;
     // }
     // char *sstr = NULL;
-    // while (i < t_map.rows)
-    while (t_map.tmp_map[i] != 0)
+        
+    while (i < t_map.rows-2)
 	{
-        // printf("%s\n", t_map.tmp_map[i]);
+        j = 0;
 		while (j < ft_strlen(t_map.tmp_map[i]))
-		{
-            printf("%c", t_map.tmp_map[i][j]);
-            // if (t_map.tmp_map[i][j] == ' ')
-            //     t_map.matrix[i][j] = '-';
-            // else
-            //     t_map.matrix[i][j] = t_map.tmp_map[i][j];
+	    {
+            if (t_map.tmp_map[i][j] == 32)
+                t_map.matrix[i][j] = 45;
+            else
+                t_map.matrix[i][j] = t_map.tmp_map[i][j];
+            printf("%d", t_map.tmp_map[i][j]);
             j++;
-		// printf("%c\n", t_map.tmp_map[i++][j++]);
 		}
         printf("\n");
         // while ((int)j < t_map.cols)
@@ -97,5 +96,12 @@ void    create_matrix(int r, int c)
         // t_map.matrix[i][j] = '\0';
 		i++;
 	}
-    free_matrix(t_map.tmp_map);
+    i = 0;
+    while (i < t_map.rows - 2)
+    {
+        printf("%s\n", t_map.tmp_map[i]);
+        i++;
+    }
+    free_matrix(t_map.tmp_map); 
+    printf("%c", 45);
 }
