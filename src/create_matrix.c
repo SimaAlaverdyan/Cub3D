@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:00:27 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/24 22:08:35 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/25 21:54:08 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	get_cols(int fd)
         if (!ret)
             break ;
     }
-    t_map.cols = max_col + 2;
+    t_map.cols = max_col;
     close(fd);
 }
 
@@ -43,7 +43,7 @@ void    r_and_c()
     i = 0;
     while (t_map.tmp_map[i] != 0)
         i++;
-    t_map.rows = i + 2;
+    t_map.rows = i;
 }
 
 void    allocate_matrix(int rows, int cols)
@@ -78,30 +78,33 @@ void    create_matrix(int r, int c)
     // }
     // char *sstr = NULL;
         
-    while (i < t_map.rows-2)
-	{
-        j = 0;
-		while (j < ft_strlen(t_map.tmp_map[i]))
-	    {
-            if (t_map.tmp_map[i][j] == 32)
-                t_map.matrix[i][j] = 45;
-            else
-                t_map.matrix[i][j] = t_map.tmp_map[i][j];
-            printf("%d", t_map.tmp_map[i][j]);
-            j++;
-		}
-        printf("\n");
-        // while ((int)j < t_map.cols)
-        //     t_map.matrix[i][j] = '-';
-        // t_map.matrix[i][j] = '\0';
-		i++;
-	}
-    i = 0;
-    while (i < t_map.rows - 2)
-    {
-        printf("%s\n", t_map.tmp_map[i]);
-        i++;
-    }
-    free_matrix(t_map.tmp_map); 
-    printf("%c", 45);
+    // while (i < t_map.rows-2)
+	// {
+    //     j = 0;
+	// 	while (j < ft_strlen(t_map.tmp_map[i]))
+	//     {
+    //         if (t_map.tmp_map[i][j] == 32)
+    //             t_map.matrix[i][j] = 45;
+    //         else
+    //             t_map.matrix[i][j] = t_map.tmp_map[i][j];
+    //         // printf("%d", t_map.tmp_map[i][j]);
+    //         j++;
+	// 	}
+    //     // printf("\n");
+    //     // while ((int)j < t_map.cols)
+    //     //     t_map.matrix[i][j] = '-';
+    //     // t_map.matrix[i][j] = '\0';
+	// 	i++;
+	// }
+    // i = 0;
+    // while (i < t_map.rows - 2)
+    // {
+    //     printf("%s\n", t_map.tmp_map[i]);
+    //     i++;
+    // }
+    
+    // free_matrix(t_map.tmp_map); 
+    // printf("%c", 45);
+
+    check_rows();
 }
