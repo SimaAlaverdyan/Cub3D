@@ -6,11 +6,20 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:00:27 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/28 15:56:48 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/28 16:22:11 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+int check_map(void)
+{
+ 	check_rows();
+    check_last_row();
+    check_first_col();
+	check_invalid_characters();
+	return (1);
+}
 
 void	get_cols(int fd)
 {
@@ -106,8 +115,6 @@ void    create_matrix(int r, int c)
     // free_matrix(t_map.tmp_map); 
     // printf("%c", 45);
 
-    check_rows();
-    check_last_row();
-    check_first_col();
+   check_map();
 
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_borders.c                                    :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 21:30:02 by zhatsago          #+#    #+#             */
-/*   Updated: 2022/08/28 16:00:22 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/28 16:23:46 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,13 @@ int	check_rows(void)
 	return (1);
 }
 
-int check_first_col(void)
+int	check_first_col(void)
 {
     int i;
     
     i = 1;
     while (i < t_map.rows)
 	{
-		// if (t_map.tmp_map[i][ft_strlen(t_map.tmp_map[i]) - 1] == '0' && 
-		// 		t_map.tmp_map[i][ft_strlen(t_map.tmp_map[i]) - 2] != '1')
-		// 	ft_exit("Error: open border!4");
 		if (t_map.tmp_map[i][0] == '0')
 			ft_exit("Error: open border!3");
         i++;
@@ -72,6 +69,27 @@ int	check_last_row(void)
         if (t_map.tmp_map[0][j] == '0')
 			ft_exit("Error: open border!8");
 		j++;
+	}
+	return (1);
+}
+
+int	check_invalid_characters(void)
+{
+	int			i;
+	size_t		j;
+
+	i = 1;
+	while (i < t_map.rows)
+	{
+		j = 1;
+		while (j < ft_strlen(t_map.tmp_map[i]))
+		{
+			if (t_map.tmp_map[i][j] != 'N' && t_map.tmp_map[i][j] != '0'
+				&& t_map.tmp_map[i][j] != '1' && t_map.tmp_map[i][j] != ' ')
+				ft_exit("Error: Invalid symbol in map!");
+			j++;
+		}
+		i++;
 	}
 	return (1);
 }
