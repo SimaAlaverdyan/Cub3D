@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/25 21:39:06 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:56:09 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ int			ft_isspace(char *str);
 void		create_initial_matrix(int rows, int cols, char matrix[rows][cols]);
 void		r_and_c();
 char		**free_matrix(char **map);
-void 		check_rows();
+int 		check_rows(void);
+int			check_last_row(void);
+int 		check_first_col(void);
 
 typedef struct s_texture
 {

@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:00:27 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/25 21:54:08 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/08/28 15:56:48 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,4 +107,7 @@ void    create_matrix(int r, int c)
     // printf("%c", 45);
 
     check_rows();
+    check_last_row();
+    check_first_col();
+
 }
