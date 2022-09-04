@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/28 16:22:34 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/04 18:59:58 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <math.h>
 # include "mlx.h"
 # include "../libft/libft.h"
-
+# include <stdbool.h>
 int			ft_check_extension(char *path, char *ext);
 int			get_next_line(int fd, char **line);
 void		ft_exit(char *str);
@@ -41,9 +41,12 @@ void		r_and_c();
 char		**free_matrix(char **map);
 int 		check_map();
 int			check_rows(void);
-int			check_first_col(void);
-int			check_last_row(void);
+int			check_first_last_col(void);
+int			check_first_last_row(void);
 int			check_invalid_characters(void);
+// int			check_dublicate_characters(void);
+int			check_on_one_start_position(char symbol, int *is_there);
+int			check_rows2(void);
 
 typedef struct s_texture
 {

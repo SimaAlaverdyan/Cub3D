@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:48:26 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/13 20:45:51 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:56:17 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ int main(int argc, char **argv)
 		// {
 		// 	/* code */
 		// }
-		
 		// mlx = mlx_init();
 		// mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
 		// mlx_loop(mlx);
-		
 		// for (int i = 0; i < t_map.rows; i++)
 		// {
 		// 	for (int j = 0; j < t_map.cols; j++)

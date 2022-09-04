@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 19:39:03 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/22 20:00:18 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/09/04 19:52:50 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_colors(void)
 int	ft_isspace(char *str)
 {
 	int		i;
-	size_t		count;
+	size_t	count;
 
 	count = 0;
 	i = 0;
