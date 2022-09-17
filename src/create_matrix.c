@@ -15,7 +15,7 @@
 int check_map(void)
 {
  	check_rows();
-    check_first_last_row();
+    check_first_row();
 	check_first_last_col();
 	check_invalid_characters();
 	check_rows2();
@@ -70,54 +70,14 @@ void    allocate_matrix(int rows, int cols)
         t_map.matrix[i++] = (char *)malloc(sizeof(char) * (cols));
 }
 
-void    create_matrix(int r, int c)
-{
-    int     i;
-    size_t  j;
+// void    create_matrix(int r, int c)
+// {
+//     int     i;
+//     size_t  j;
 
-    allocate_matrix(r, c);    
-    i = 0;
-    j = 0;
-    // while (i < r)
-    // {
-    //     j = 0;
-    //     while (j < c)
-    //     {
-    //         t_map.matrix[i][j] = '-';
-    //         j++;
-    //     }
-    //     i++;
-    // }
-    // char *sstr = NULL;
-        
-    // while (i < t_map.rows-2)
-	// {
-    //     j = 0;
-	// 	while (j < ft_strlen(t_map.tmp_map[i]))
-	//     {
-    //         if (t_map.tmp_map[i][j] == 32)
-    //             t_map.matrix[i][j] = 45;
-    //         else
-    //             t_map.matrix[i][j] = t_map.tmp_map[i][j];
-    //         // printf("%d", t_map.tmp_map[i][j]);
-    //         j++;
-	// 	}
-    //     // printf("\n");
-    //     // while ((int)j < t_map.cols)
-    //     //     t_map.matrix[i][j] = '-';
-    //     // t_map.matrix[i][j] = '\0';
-	// 	i++;
-	// }
-    // i = 0;
-    // while (i < t_map.rows - 2)
-    // {
-    //     printf("%s\n", t_map.tmp_map[i]);
-    //     i++;
-    // }
-    
-    // free_matrix(t_map.tmp_map); 
-    // printf("%c", 45);
+//     allocate_matrix(r, c);    
+//     i = 0;
+//     j = 0;
 
-   check_map();
-
-}
+//    check_map();
+// }

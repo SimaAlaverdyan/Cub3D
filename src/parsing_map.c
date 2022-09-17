@@ -62,5 +62,5 @@ void	parsing_map(int fd)
 	tmp_map(fd);
 	close(fd);
 	r_and_c();
-	create_matrix(t_map.rows, t_map.cols);
+	check_map();
 }

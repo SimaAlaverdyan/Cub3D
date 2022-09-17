@@ -19,14 +19,17 @@
 # include <unistd.h>
 # include <math.h>
 # include <math.h>
-# include "mlx.h"
+# include "mlx.h" 
 # include "../libft/libft.h"
 # include <stdbool.h>
+
 int			ft_check_extension(char *path, char *ext);
 int			get_next_line(int fd, char **line);
-void		ft_exit(char *str);
+int			ft_exit(char *str);
+int			ft_mlx_pressed(int keycode);
+int			ft_mlx_released(int keycode);
 void		get_cols(int fd);
-void    	init(int fd, char **argv);
+void    	init(int fd);
 void		allocate_matrix(int rows, int cols);
 void    	create_matrix(int r, int c);
 void		parsing(int fd);
@@ -42,13 +45,15 @@ char		**free_matrix(char **map);
 int 		check_map();
 int			check_rows(void);
 int			check_first_last_col(void);
-int			check_first_last_row(void);
+int			check_first_row(void);
 int			check_invalid_characters(void);
 // int			check_dublicate_characters(void);
 int			check_on_one_start_position(char symbol, int *is_there);
 int			check_rows2(void);
+void		set_mlx_images();
+void		set_mlx_addresses();
 
-typedef struct s_texture
+typedef struct s_img
 {
 	char		*path;
 	void		*img;
@@ -58,14 +63,26 @@ typedef struct s_texture
 	int			endian;
 	int			height;
 	int			width;
-}				t_texture;
+}				t_img;
+
+typedef struct s_keys
+{
+	int		w;
+	int		s;
+	int		d;
+	int		a;
+	// int		left;
+	// int		right;
+}				t_keys;
 
 struct s_map
 {
-	t_texture	no;
-	t_texture	so;
-	t_texture	we;
-	t_texture	ea;
+	t_img		data;
+	t_img		no;
+	t_img		so;
+	t_img		we;
+	t_img		ea;
+	t_keys		key;
 	int			f_color[3];
 	int			c_color[3];
 	int			rows_tmp;
@@ -77,8 +94,32 @@ struct s_map
 
 typedef struct s_game
 {
-	void	*mlx;
-	void	*mlx_win;
+	void		*mlx;
+	void		*mlx_win;
+	double      posX;
+    double      posY;
+    double      dirX;
+    double      dirY;
+    double      planeX;
+    double      planeY;
+    double      cameraX;
+    double      rayDirX;
+    double      rayDirY;
+    int         mapX;
+    int         mapY;
+    double      sideDistX;
+    double      sideDistY;
+    double      deltaDistX;
+    double      deltaDistY;
+    double      perpWallDist;
+    double      moveSpeed;
+    double      rotSpeed;
+    int         stepX;
+    int         stepY;
+    int         s_count;
 }				t_game;
+
+t_game	game;
+t_keys	keys;
 
 #endif

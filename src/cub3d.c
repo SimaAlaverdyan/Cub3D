@@ -12,13 +12,6 @@
 
 #include "../include/cub3D.h"
 
-void	ft_exit(char *str)
-{
-	ft_putstr_fd(str, 1);
-	write(1, "\n", 1);
-	exit(0);
-}
-
 int main(int argc, char **argv)
 {
 	int		fd;
@@ -30,34 +23,21 @@ int main(int argc, char **argv)
 			ft_exit("Failed opening file");
 		if (!(ft_check_extension(argv[1], ".cub")))
 			ft_exit("Invalid file");
-		// init_map(fd, argv);
-		init(fd, argv); 					///////FOR STACK INIT
-	    get_cols(fd);
+		init(fd);
 		close(fd);
 		fd = open(argv[1], O_RDONLY);
-
 		parsing(fd);
-		// printf("%d\n", t_map.rows);
-		// printf("%d\n", t_map.cols);
 		close(fd);
-		// while (1)
-		// {
-		// 	/* code */
-		// }
-		// mlx = mlx_init();
-		// mlx_win = mlx_new_window(mlx, 920, 1000, "Cub3D");
-		// mlx_loop(mlx);
-		// for (int i = 0; i < t_map.rows; i++)
-		// {
-		// 	for (int j = 0; j < t_map.cols; j++)
-		// 	{
-		// 		printf("%c", t_map.matrix[i][j]);
-		// 	}
-		// 	printf("\n");
-		// }
-		// printf("\n");
-		// printf("\n");
-
+		game.mlx = mlx_init();
+		set_mlx_images();
+		set_mlx_addresses();
+		game.mlx_win = mlx_new_window(game.mlx, 920, 1000, "Cub3D");
+    	mlx_put_image_to_window(game.mlx, game.mlx_win, t_map.data.img, 0, 0);
+    	mlx_hook(game.mlx_win, 2, 1L<<0, ft_mlx_pressed, &game.mlx);
+    	mlx_hook(game.mlx_win, 3, 1L<<1, ft_mlx_released, &game.mlx);
+    	mlx_hook(game.mlx_win, 17, 1L<<17, ft_exit, &game.mlx);
+    	// mlx_loop_hook(game.mlx, game, &game);
+    	mlx_loop(game.mlx);
 	}	
 	return (0);
 }

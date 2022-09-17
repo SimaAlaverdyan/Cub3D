@@ -79,20 +79,42 @@ int	check_first_last_col(void)
 	return (1);
 }
 
-int	check_first_last_row(void)
+int    check_first_row(void)
+{
+    int        i;
+    size_t    j;
+
+    i = 0;
+	j = 0;
+    while (i < t_map.rows)
+    {
+        j = 0;
+        while (j < ft_strlen(t_map.tmp_map[i]) - 1)
+        {
+            if (t_map.tmp_map[0][j] == '0')
+                ft_exit("Error: open border!8 upper border");
+            j++;
+        }
+        // if (t_map.tmp_map[t_map.rows-1][j] == '0')
+        //     ft_exit("Error: open border!7 down border");
+        i++;
+    }
+    return (1);
+}
+
+void	check_last_row(void)
 {
 	int		i;
 	size_t	j;
 
-	j = 0;
 	i = t_map.rows - 1;
-	while (j < ft_strlen(t_map.tmp_map[i]))
+	j = 0;
+	while (j < ft_strlen(t_map.tmp_map[rows - 1][j]))
 	{
-		if (t_map.tmp_map[i][j] == '0')
-			ft_exit("Error: open border!7 down border");
-		if (t_map.tmp_map[0][j] == '0')
-			ft_exit("Error: open border!8 upper border");
-		j++;
+		while (t_map.tmp_map[i][j] == ' ' || t_map.tmp_map[i][j] == '\0'
+			|| t_map.tmp_map[i][j] == '\t')
+			j++;
+		
 	}
-	return (1);
+	
 }
