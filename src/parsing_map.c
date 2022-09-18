@@ -57,10 +57,21 @@ void	tmp_map(int fd)
 	free(result);
 }
 
+void    r_and_c()
+{
+    int i;
+
+    i = 0;
+    while (t_map.tmp_map[i] != 0)
+        i++;
+    t_map.rows = i;
+}
+
 void	parsing_map(int fd)
 {
 	tmp_map(fd);
 	close(fd);
 	r_and_c();
+	matrix();
 	check_map();
 }

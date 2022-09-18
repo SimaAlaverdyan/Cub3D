@@ -52,6 +52,11 @@ int			check_on_one_start_position(char symbol, int *is_there);
 int			check_rows2(void);
 void		set_mlx_images();
 void		set_mlx_addresses();
+void		matrix();
+void	first_and_last_row(char *s);
+void	col_border(char *s);
+void    check_borders(void);
+void    minus_check(int i, int j);
 
 typedef struct s_img
 {

@@ -12,6 +12,7 @@
 
 #include "../include/cub3D.h"
 
+/*
 int	check_rows(void)
 {
 	int			i;
@@ -79,7 +80,7 @@ int	check_first_last_col(void)
 	return (1);
 }
 
-int    check_first_row(void)
+int    	check_first_row(void)
 {
     int        i;
     size_t    j;
@@ -101,20 +102,30 @@ int    check_first_row(void)
     }
     return (1);
 }
+*/
 
-void	check_last_row(void)
+void	first_and_last_row(char *str)
 {
-	int		i;
-	size_t	j;
-
-	i = t_map.rows - 1;
-	j = 0;
-	while (j < ft_strlen(t_map.tmp_map[rows - 1][j]))
+	while (*str)
 	{
-		while (t_map.tmp_map[i][j] == ' ' || t_map.tmp_map[i][j] == '\0'
-			|| t_map.tmp_map[i][j] == '\t')
-			j++;
-		
+		if (*str != '1' && *str != '-')
+			ft_exit("Error: Open border");
+		str++;
 	}
-	
+}
+
+void	col_border(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = t_map.cols - 1;
+
+	while (s[i] == '-' && s[i] != '\0')
+		i++;
+	while (s[j] == '-' && j >= 0)
+		j--;
+	if (s[i] != '1' || s[j] != '1')
+		ft_exit("Error: Open border");
 }

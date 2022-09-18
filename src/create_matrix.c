@@ -12,16 +12,17 @@
 
 #include "../include/cub3D.h"
 
-int check_map(void)
+int    check_map(void)
 {
- 	check_rows();
-    check_first_row();
-	check_first_last_col();
-	check_invalid_characters();
-	check_rows2();
+ 	// check_rows();
+    // check_first_row();
+	// check_first_last_col();
+	// check_invalid_characters();
+	// check_rows2();
 
 	// check_dublicate_characters();
-	return (1);
+    check_borders();
+    return (0);
 }
 
 void	get_cols(int fd)
@@ -48,15 +49,6 @@ void	get_cols(int fd)
     close(fd);
 }
 
-void    r_and_c()
-{
-    int i;
-
-    i = 0;
-    while (t_map.tmp_map[i] != 0)
-        i++;
-    t_map.rows = i;
-}
 
 void    allocate_matrix(int rows, int cols)
 {
@@ -70,14 +62,66 @@ void    allocate_matrix(int rows, int cols)
         t_map.matrix[i++] = (char *)malloc(sizeof(char) * (cols));
 }
 
-// void    create_matrix(int r, int c)
-// {
-//     int     i;
-//     size_t  j;
+void    matrix()
+{
+    int     i;
+    size_t  j;
 
-//     allocate_matrix(r, c);    
-//     i = 0;
-//     j = 0;
+    i = 0;
+    j = 0;
+    allocate_matrix(t_map.rows, t_map.cols);    
+    while (i < t_map.rows)
+    {
+        j = 0;
+        while (j < ft_strlen(t_map.tmp_map[i]))
+        {
+            if (t_map.tmp_map[i][j] == ' ')
+                t_map.matrix[i][j] = '-';
+            else
+                t_map.matrix[i][j] = t_map.tmp_map[i][j];
+            j++;
+        }
+        while (j < (size_t)t_map.cols)
+        {
+            t_map.matrix[i][j] = '-';
+            j++;
+        }
+        t_map.matrix[i][j] = '\0';
+        i++;
+    }
+    free_matrix(t_map.tmp_map);
+}
 
-//    check_map();
-// }
+void    check_borders(void)
+{
+    int i;
+    int j;
+
+    i = 0;
+    check_invalid_characters();
+    while (i < t_map.rows)
+    {
+        
+        j = 0;
+        if (i == 0 || i == t_map.rows - 1)
+            first_and_last_row(t_map.matrix[i]);
+        else
+            col_border(t_map.matrix[i]);
+        // printf("%d", t_map.cols);
+        while (j < t_map.cols)
+        // while (t_map.matrix[i][j] != '\0')
+        {
+            if (t_map.matrix[i][j] == '-')
+            {
+                // printf("here\n");
+                minus_check(i, j);
+            }
+				// printf("%c ", t_map.matrix[i][j]);
+
+            j++;
+        }
+			// printf("\n");
+
+        i++;
+    }
+}

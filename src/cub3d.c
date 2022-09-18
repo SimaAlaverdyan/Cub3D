@@ -28,16 +28,24 @@ int main(int argc, char **argv)
 		fd = open(argv[1], O_RDONLY);
 		parsing(fd);
 		close(fd);
-		game.mlx = mlx_init();
-		set_mlx_images();
-		set_mlx_addresses();
-		game.mlx_win = mlx_new_window(game.mlx, 920, 1000, "Cub3D");
-    	mlx_put_image_to_window(game.mlx, game.mlx_win, t_map.data.img, 0, 0);
-    	mlx_hook(game.mlx_win, 2, 1L<<0, ft_mlx_pressed, &game.mlx);
-    	mlx_hook(game.mlx_win, 3, 1L<<1, ft_mlx_released, &game.mlx);
-    	mlx_hook(game.mlx_win, 17, 1L<<17, ft_exit, &game.mlx);
+		// game.mlx = mlx_init();
+		// set_mlx_images();
+		// set_mlx_addresses();
+		// game.mlx_win = mlx_new_window(game.mlx, 920, 1000, "Cub3D");
+    	// mlx_put_image_to_window(game.mlx, game.mlx_win, t_map.data.img, 0, 0);
+    	// mlx_hook(game.mlx_win, 2, 1L<<0, ft_mlx_pressed, &game.mlx);
+    	// mlx_hook(game.mlx_win, 3, 1L<<1, ft_mlx_released, &game.mlx);
+    	// mlx_hook(game.mlx_win, 17, 1L<<17, ft_exit, &game.mlx);
+		// for (int i = 0; i < t_map.rows; i++)
+		// {
+		// 	for (size_t j = 0; j < ft_strlen(t_map.matrix[i]); j++)
+		// 	{
+		// 		printf("%c ", t_map.matrix[i][j]);
+		// 	}
+		// 	printf("\n");
+		// }
     	// mlx_loop_hook(game.mlx, game, &game);
-    	mlx_loop(game.mlx);
+    	// mlx_loop(game.mlx);
 	}	
 	return (0);
 }
