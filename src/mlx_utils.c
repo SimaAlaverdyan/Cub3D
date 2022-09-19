@@ -1,20 +1,26 @@
 #include "../include/cub3D.h"
 
+int rgb(int *colors)
+{
+    return ((colors[0] << 16) + (colors[1] << 8) + colors[2]);
+}
+
+int		get_color(t_img *data, int x, int y)
+{
+	return (*(int *)(data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8))));
+}
+
 void    set_mlx_images()
 {
-    t_map.data.img = mlx_new_image(game.mlx, 920, 1000);
+    t_map.data.img = mlx_new_image(game.mlx, WIN_WIDTH, WIN_HEIGHT);
     t_map.no.img = mlx_xpm_file_to_image(game.mlx, t_map.no.path,
                             &t_map.no.width, &t_map.no.height);
-    // printf("%s\n", t_map.no.path);
     t_map.so.img = mlx_xpm_file_to_image(game.mlx, t_map.so.path,
                             &t_map.so.width, &t_map.so.height);
-    // printf("%s\n", t_map.so.path);
     t_map.we.img = mlx_xpm_file_to_image(game.mlx, t_map.we.path,
                             &t_map.we.width, &t_map.we.height);
-    // printf("%s\n", t_map.we.img);
     t_map.ea.img = mlx_xpm_file_to_image(game.mlx, t_map.ea.path,
                             &t_map.ea.width, &t_map.ea.height);
-    // printf("%s\n", t_map.ea.img);
 }
 
 void set_mlx_addresses()

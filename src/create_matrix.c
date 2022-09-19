@@ -12,19 +12,6 @@
 
 #include "../include/cub3D.h"
 
-int    check_map(void)
-{
- 	// check_rows();
-    // check_first_row();
-	// check_first_last_col();
-	// check_invalid_characters();
-	// check_rows2();
-
-	// check_dublicate_characters();
-    check_borders();
-    return (0);
-}
-
 void	get_cols(int fd)
 {
     char        *line;
@@ -107,21 +94,12 @@ void    check_borders(void)
             first_and_last_row(t_map.matrix[i]);
         else
             col_border(t_map.matrix[i]);
-        // printf("%d", t_map.cols);
         while (j < t_map.cols)
-        // while (t_map.matrix[i][j] != '\0')
         {
             if (t_map.matrix[i][j] == '-')
-            {
-                // printf("here\n");
                 minus_check(i, j);
-            }
-				// printf("%c ", t_map.matrix[i][j]);
-
             j++;
         }
-			// printf("\n");
-
         i++;
     }
 }

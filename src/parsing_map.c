@@ -12,11 +12,10 @@
 
 #include "../include/cub3D.h"
 
-char	*remove_empty_lines(int fd)				/////removing empty lines before F color
+char	*remove_empty_lines(int fd)
 {
 	int		res;
 	char	*line;
-//	create_matrix(t_map.rows - t_map.rows_tmp, t_map.cols);
 	res = get_next_line(fd, &line);
 	while (res > 0)
 	{
@@ -29,7 +28,6 @@ char	*remove_empty_lines(int fd)				/////removing empty lines before F color
 			break ;
 	}
 	return (line);
-	// ft_isspace(line);
 }
 
 void	tmp_map(int fd)
@@ -73,5 +71,5 @@ void	parsing_map(int fd)
 	close(fd);
 	r_and_c();
 	matrix();
-	check_map();
+	check_borders();
 }
