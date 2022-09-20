@@ -93,6 +93,23 @@ typedef struct s_game
 	char		player_view;
 }				t_game;
 
+struct vars
+{
+    int     hit;
+    int     side;
+    int     lineHeight;
+    int     drawStart;
+    int     drawEnd;
+    int     texX;
+    int     texY;
+    int     color;
+    double  BUFFER[WIN_WIDTH];
+    double  wallX;
+    double  step;
+    double  texPos;
+}	vars;
+
+
 t_game	game;
 t_keys	keys;
 
@@ -127,5 +144,6 @@ void		ft_raycasting(void);
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int			rgb(int *colors);
 int			get_color(t_img *data, int x, int y);
+void		raycasting_vars(int x);
 
 #endif
