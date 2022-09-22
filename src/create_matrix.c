@@ -36,7 +36,6 @@ void	get_cols(int fd)
     close(fd);
 }
 
-
 void    allocate_matrix(int rows, int cols)
 {
     int i;

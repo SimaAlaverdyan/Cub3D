@@ -27,7 +27,6 @@ int main(int argc, char **argv)
 		close(fd);
 		fd = open(argv[1], O_RDONLY);
 		parsing(fd);
-		close(fd);
 		game.mlx = mlx_init();
 		set_mlx_images();
 		set_mlx_addresses();
@@ -38,6 +37,7 @@ int main(int argc, char **argv)
     	mlx_hook(game.mlx_win, 17, 1L<<17, ft_exit, NULL);
     	mlx_loop_hook(game.mlx, start, &game);
     	mlx_loop(game.mlx);
-	}	
+		ft_free();
+	}
 	return (0);
 }

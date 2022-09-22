@@ -34,5 +34,8 @@ void	col_border(char *s)
 	while (s[j] == '-' && j >= 0)
 		j--;
 	if (s[i] != '1' || s[j] != '1')
+	{
+		printf("%d %d\n", i, j);
 		ft_exit("Error: Open border");
+	}
 }

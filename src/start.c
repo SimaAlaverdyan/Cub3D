@@ -25,6 +25,28 @@ void ft_clear()
     }
 }
 
+void    ft_free(void)
+{
+    free_matrix(t_map.matrix);
+    free(game.mlx);
+    free(game.mlx_win);
+    free(t_map.data.path);
+    free(t_map.data.img);
+    free(t_map.data.addr);
+    free(t_map.no.path);
+    free(t_map.no.img);
+    free(t_map.no.addr);
+    free(t_map.so.path);
+    free(t_map.so.img);
+    free(t_map.so.addr);
+    free(t_map.we.path);
+    free(t_map.we.img);
+    free(t_map.we.addr);
+    free(t_map.ea.path);
+    free(t_map.ea.img);
+    free(t_map.ea.addr);
+}
+
 int start()
 {
     read_keys();

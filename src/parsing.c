@@ -38,6 +38,7 @@ void	parse_color(char *line, char mode)
 	}
 	if (!check_colors())
 		ft_exit("Error: wrong color numbers");
+	free_matrix(colors);
 }
 
 char	*parse_texture_path(char *line)
@@ -49,10 +50,10 @@ char	*parse_texture_path(char *line)
 		line++;
 	path = ft_strdup(line);
 	if (!(check_map_name(path, ".xpm")))
-		ft_exit("Error: File extension error");
+		ft_exit ("Error: File extension error");
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
-		ft_exit("File doesn't exist");
+		ft_exit ("File doesn't exist");
 	else
 		close (fd);
 	return (path);
@@ -93,6 +94,7 @@ void	parsing(int fd)
 			continue ;
 		else
 			parsing_texture(line);
+		free(line);
 		i++;
 	}
 	if (t_map.ea.path == NULL || t_map.we.path == NULL

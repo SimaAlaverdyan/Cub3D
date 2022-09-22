@@ -69,7 +69,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*mlx_win;
-	double      posX;		//start pos ()
+	double      posX;
     double      posY;
     double      dirX;
     double      dirY;
@@ -145,5 +145,6 @@ void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int			rgb(int *colors);
 int			get_color(t_img *data, int x, int y);
 void		raycasting_vars(int x);
+void        ft_free(void);
 
 #endif

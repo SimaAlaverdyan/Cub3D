@@ -36,22 +36,26 @@ void	tmp_map(int fd)
 	char	*result;
 	char	*tmp;
 	char	*line;
+	char	*a;
 
-	line = remove_empty_lines(fd);
+	a = remove_empty_lines(fd);
 	result = NULL;
-	line = ft_strjoin(line, "\n");
+	line = ft_strjoin(a, "\n");
+	free(a);
 	result = line;
 	r = get_next_line(fd, &line);
 	while (r > 0)
 	{
-		line = ft_strjoin(line, "\n");
-		tmp = ft_strjoin(result, line);
+		a = ft_strjoin(line, "\n");
+		tmp = ft_strjoin(result, a);
 		free(result);
+		free(a);
 		result = tmp;
 		free(line);
 		r = get_next_line(fd, &line);
 	}
 	t_map.tmp_map = ft_split(result, '\n');
+	free(line);
 	free(result);
 }
 
