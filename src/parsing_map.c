@@ -21,6 +21,7 @@ char	*remove_empty_lines(int fd)
 	{
 		if (ft_strlen(line) == 0)
 		{
+			free(line);
 			res = get_next_line(fd, &line);
 			continue ;
 		}
@@ -54,6 +55,7 @@ void	tmp_map(int fd)
 		free(line);
 		r = get_next_line(fd, &line);
 	}
+
 	t_map.tmp_map = ft_split(result, '\n');
 	free(line);
 	free(result);

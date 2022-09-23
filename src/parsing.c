@@ -67,7 +67,9 @@ void	parsing_texture(char *line)
 		line++;
 	}
 	if (line[0] == 'N' && line[1] == 'O')
+	{
 		t_map.no.path = parse_texture_path(line + 2);
+	}
 	else if (line[0] == 'S' && line[1] == 'O')
 		t_map.so.path = parse_texture_path(line + 2);
 	else if (line[0] == 'W' && line[1] == 'E')
@@ -75,9 +77,13 @@ void	parsing_texture(char *line)
 	else if (line[0] == 'E' && line[1] == 'A')
 		t_map.ea.path = parse_texture_path(line + 2);
 	else if (line[0] == 'F')
+	{
+		// while (1);
 		parse_color(line + 1, 'F');
+	}
 	else if (line[0] == 'C')
 		parse_color(line + 1, 'C');
+	
 }
 
 void	parsing(int fd)
@@ -91,7 +97,10 @@ void	parsing(int fd)
 	{
 		t_map.rows_tmp++;
 		if (ft_strlen(line) == 0)
+		{
+			free(line);
 			continue ;
+		}
 		else
 			parsing_texture(line);
 		free(line);
