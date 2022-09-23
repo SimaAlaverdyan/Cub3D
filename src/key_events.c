@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_events.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zhatsago <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/23 19:13:20 by zhatsago          #+#    #+#             */
+/*   Updated: 2022/09/23 19:13:30 by zhatsago         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
-int		ft_exit(char *str)
+int	ft_exit(char *str)
 {
 	if (str == NULL)
 		exit(0);
@@ -9,7 +21,7 @@ int		ft_exit(char *str)
 	exit(0);
 }
 
-int		ft_mlx_pressed(int keycode)
+int	ft_mlx_pressed(int keycode)
 {
 	if (keycode == 53)
 		exit(0);
@@ -28,7 +40,7 @@ int		ft_mlx_pressed(int keycode)
 	return (0);
 }
 
-int		ft_mlx_released(int keycode)
+int	ft_mlx_released(int keycode)
 {
 	if (keycode == 13)
 		t_map.keys.w = 0;

@@ -6,7 +6,7 @@
 /*   By: zhatsago <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 19:53:55 by zhatsago          #+#    #+#             */
-/*   Updated: 2022/09/04 19:55:46 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:17:02 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*remove_empty_lines(int fd)
 {
 	int		res;
 	char	*line;
+
 	res = get_next_line(fd, &line);
 	while (res > 0)
 	{
@@ -55,20 +56,19 @@ void	tmp_map(int fd)
 		free(line);
 		r = get_next_line(fd, &line);
 	}
-
 	t_map.tmp_map = ft_split(result, '\n');
 	free(line);
 	free(result);
 }
 
-void    r_and_c()
+void	r_and_c(void)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (t_map.tmp_map[i] != 0)
-        i++;
-    t_map.rows = i;
+	i = 0;
+	while (t_map.tmp_map[i] != 0)
+		i++;
+	t_map.rows = i;
 }
 
 void	parsing_map(int fd)

@@ -6,7 +6,7 @@
 /*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/22 20:01:09 by salaverd          #+#    #+#             */
-/*   Updated: 2022/08/22 20:20:41 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/09/23 19:18:00 by zhatsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,9 @@ void	parsing_texture(char *line)
 	else if (line[0] == 'E' && line[1] == 'A')
 		t_map.ea.path = parse_texture_path(line + 2);
 	else if (line[0] == 'F')
-	{
-		// while (1);
 		parse_color(line + 1, 'F');
-	}
 	else if (line[0] == 'C')
 		parse_color(line + 1, 'C');
-	
 }
 
 void	parsing(int fd)
