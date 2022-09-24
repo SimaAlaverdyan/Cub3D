@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 14:51:15 by zhatsago          #+#    #+#             */
-/*   Updated: 2022/08/13 20:00:49 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/24 18:13:32 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ char	*the_line(char *tmp)
 	i = 0;
 	while (tmp && tmp[i] != '\n' && tmp[i] != '\0')
 		i++;
-	if (!(line = (char *)malloc(i + 1)))
+	line = (char *)malloc(i + 1);
+	if (!line)
 		return (NULL);
 	while (j < i)
 	{
@@ -50,7 +51,8 @@ char	*leftover(char *tmp)
 		free(tmp);
 		return (NULL);
 	}
-	if (!(ptr = (char *)malloc(ft_gnl_strlen(tmp) - i + 1)))
+	ptr = (char *)malloc(ft_gnl_strlen(tmp) - i + 1);
+	if (!ptr)
 		return (NULL);
 	i++;
 	while (tmp[i])
@@ -60,19 +62,19 @@ char	*leftover(char *tmp)
 	return (ptr);
 }
 
-int		get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	int			r;
 	char		*buf;
-	static char *tmp;
+	static char	*tmp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0)
 		return (-1);
-	if (!(buf = (char *)malloc(BUFFER_SIZE + 1)))
-		return (-1);
+	buf = (char *)malloc(BUFFER_SIZE + 1);
 	r = 1;
-	while ((r = read(fd, buf, BUFFER_SIZE)) > 0)
+	while (r > 0)
 	{
+		r = read(fd, buf, BUFFER_SIZE);
 		buf[r] = '\0';
 		tmp = ft_gnl_strjoin(tmp, buf);
 		if (ft_gnl_strchr(buf, '\n'))
@@ -85,6 +87,5 @@ int		get_next_line(int fd, char **line)
 		return (-1);
 	if (r == 0 && !tmp)
 		return (0);
-	// free(tmp);
 	return (1);
 }

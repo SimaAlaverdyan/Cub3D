@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:02:16 by zhatsago          #+#    #+#             */
-/*   Updated: 2022/09/23 19:09:28 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/24 17:34:51 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,8 @@ int	check_invalid_characters(void)
 		j = 1;
 		while (j < ft_strlen(t_map.matrix[i]))
 		{
-			if (t_map.matrix[i][j] != 'N' && t_map.matrix[i][j] != 'S' &&
-			t_map.matrix[i][j] != 'W' && t_map.matrix[i][j] != 'E' &&
-			t_map.matrix[i][j] != '0' && t_map.matrix[i][j] != '1' &&
-			t_map.matrix[i][j] != '-')
-				ft_exit("Error: Invalid symbol in map!");
 			check_on_one_start_position(t_map.matrix[i][j], &is_there);
-			if (t_map.matrix[i][j] == 'N' || t_map.matrix[i][j] == 'S' ||
-			t_map.matrix[i][j] == 'W' || t_map.matrix[i][j] == 'E')
-			{
-				set_player_pos(j, i);
-				set_player_dir_plane(t_map.matrix);
-			}
+			check_invalid_characters2(i, j);
 			j++;
 		}
 		i++;

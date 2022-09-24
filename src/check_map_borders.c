@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 21:30:02 by zhatsago          #+#    #+#             */
-/*   Updated: 2022/09/19 16:07:46 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/09/24 20:24:24 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,22 @@ void	col_border(char *s)
 	{
 		printf("%d %d\n", i, j);
 		ft_exit("Error: Open border");
+	}
+}
+
+void	check_invalid_characters2(int i, int j)
+{
+	if (t_map.matrix[i][j] != 'N' && t_map.matrix[i][j] != 'S' &&
+		t_map.matrix[i][j] != 'W' && t_map.matrix[i][j] != 'E' &&
+		t_map.matrix[i][j] != '0' && t_map.matrix[i][j] != '1' &&
+		t_map.matrix[i][j] != '-')
+	{
+		ft_exit("Error: Invalid symbol in map!");
+	}
+	if (t_map.matrix[i][j] == 'N' || t_map.matrix[i][j] == 'S' ||
+		t_map.matrix[i][j] == 'W' || t_map.matrix[i][j] == 'E')
+	{
+		set_player_pos(j, i);
+		set_player_dir_plane(t_map.matrix);
 	}
 }
