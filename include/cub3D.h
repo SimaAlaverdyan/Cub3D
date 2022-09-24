@@ -6,7 +6,7 @@
 /*   By: zhatsago <zhatsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 17:49:19 by salaverd          #+#    #+#             */
-/*   Updated: 2022/09/04 18:59:58 by zhatsago         ###   ########.fr       */
+/*   Updated: 2022/09/24 20:45:32 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,47 +68,46 @@ struct s_map
 typedef struct s_game
 {
 	void		*mlx;
-	void		*mlx_win;
-	double      posX;
-    double      posY;
-    double      dirX;
-    double      dirY;
-    double      planeX;
-    double      planeY;
-    double      cameraX;
-    double      rayDirX;
-    double      rayDirY;
-    int         mapX;
-    int         mapY;
-    double      sideDistX;
-    double      sideDistY;
-    double      deltaDistX;
-    double      deltaDistY;
-    double      perpWallDist;
-    double      moveSpeed;
-    double      rotSpeed;
-    int         stepX;
-    int         stepY;
-    int         s_count;
+	void		_win;
+	double		pos;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double		cameraX;
+	double		rayDirX;
+	double		rayDirY;
+	int			mapX;
+	int			mapY;
+	double		sideDistX;
+	double		sideDistY;
+	double		deltaDistX;
+	double		deltaDistY;
+	double		perpWallDist;
+	double		moveSpeed;
+	double		rotSpeed;
+	int			stepX;
+	int			stepY;
+	int			s_count;
 	char		player_view;
 }				t_game;
 
-struct vars
+struct	s_vars
 {
-    int     hit;
-    int     side;
-    int     lineHeight;
-    int     drawStart;
-    int     drawEnd;
-    int     texX;
-    int     texY;
-    int     color;
-    double  BUFFER[WIN_WIDTH];
-    double  wallX;
-    double  step;
-    double  texPos;
-}	vars;
-
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+	int		texX;
+	int		texY;
+	int		color;
+	double	BUFFER[WIN_WIDTH];
+	double	wallX;
+	double	step;
+	double	texPos;
+}		vars;
 
 t_game	game;
 t_keys	keys;
@@ -119,7 +118,7 @@ int			ft_exit(char *str);
 int			ft_mlx_pressed(int keycode);
 int			ft_mlx_released(int keycode);
 void		get_cols(int fd);
-void    	init(int fd);
+void		init(int fd);
 void		allocate_matrix(int rows, int cols);
 void		parsing(int fd);
 void		parsing_map(int fd);
@@ -127,28 +126,28 @@ int			ft_isspace(char *str);
 int			check_map_name(char *string, char *ext);
 int			check_ext(char *path, char *ext);
 int			check_colors(void);
-void		r_and_c();
+void		r_and_c(void);
 char		**free_matrix(char **map);
 int			check_invalid_characters(void);
-void        check_invalid_characters2(int i, int j);
-void        set_player_pos(int x, int y);
-void        set_player_dir_plane(char **map);
-void        set_player_dir_plane2(char **map);
+void		check_invalid_characters2(int i, int j);
+void		set_player_pos(int x, int y);
+void		set_player_dir_plane(char **map);
+void		set_player_dir_plane2(char **map);
 int			check_on_one_start_position(char symbol, int *is_there);
-void		set_mlx_images();
-void		set_mlx_addresses();
-void		matrix();
+void		set_mlx_images(void);
+void		set_mlx_addresses(void);
+void		matrix(void);
 void		first_and_last_row(char *s);
 void		col_border(char *s);
 void		check_borders(void);
 void		minus_check(int i, int j);
-int			start();
-void		read_keys();
+int			start(void);
+void		read_keys(void);
 void		ft_raycasting(void);
 void		my_mlx_pixel_put(t_img *data, int x, int y, int color);
 int			rgb(int *colors);
 int			get_color(t_img *data, int x, int y);
 void		raycasting_vars(int x);
-void        ft_free(void);
+void		ft_free(void);
 
 #endif
