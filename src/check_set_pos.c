@@ -14,47 +14,47 @@
 
 void	set_player_pos(int x, int y)
 {
-	game.player_view = t_map.matrix[y][x];
-	game.posY = (double)x + 0.5;
-	game.posX = (double)y + 0.5;
+	g_game.player_view = t_map.matrix[y][x];
+	g_game.posy = (double)x + 0.5;
+	g_game.posx = (double)y + 0.5;
 }
 
 void	set_player_dir_plane2(char **map)
 {
-	if (map[(int)(game.posX - 0.5)][(int)(game.posY - 0.5)] == 'E')
+	if (map[(int)(g_game.posx - 0.5)][(int)(g_game.posy - 0.5)] == 'E')
 	{
-		game.dirX = 0.0;
-		game.dirY = 1.0;
-		game.planeX = 0.66;
-		game.planeY = 0.0;
+		g_game.dirx = 0.0;
+		g_game.diry = 1.0;
+		g_game.planex = 0.66;
+		g_game.planey = 0.0;
 	}
-	else if (map[(int)(game.posX - 0.5)][(int)(game.posY - 0.5)] == 'W')
+	else if (map[(int)(g_game.posx - 0.5)][(int)(g_game.posy - 0.5)] == 'W')
 	{
-		game.dirX = 0.0;
-		game.dirY = -1.0;
-		game.planeX = -0.66;
-		game.planeY = 0.0;
+		g_game.dirx = 0.0;
+		g_game.diry = -1.0;
+		g_game.planex = -0.66;
+		g_game.planey = 0.0;
 	}
 }
 
 void	set_player_dir_plane(char **map)
 {
-	if (map[(int)(game.posX - 0.5)][(int)(game.posY - 0.5)] == 'N')
+	if (map[(int)(g_game.posx - 0.5)][(int)(g_game.posy - 0.5)] == 'N')
 	{
-		game.dirX = -1.0;
-		game.dirY = 0.0;
-		game.planeX = 0.0;
-		game.planeY = 0.66;
+		g_game.dirx = -1.0;
+		g_game.diry = 0.0;
+		g_game.planex = 0.0;
+		g_game.planey = 0.66;
 	}
-	else if (map[(int)(game.posX - 0.5)][(int)(game.posY - 0.5)] == 'S')
+	else if (map[(int)(g_game.posx - 0.5)][(int)(g_game.posy - 0.5)] == 'S')
 	{
-		game.dirX = 1.0;
-		game.dirY = 0.0;
-		game.planeX = 0.0;
-		game.planeY = -0.66;
+		g_game.dirx = 1.0;
+		g_game.diry = 0.0;
+		g_game.planex = 0.0;
+		g_game.planey = -0.66;
 	}
 	set_player_dir_plane2(map);
-	map[(int)(game.posX - 0.5)][(int)(game.posY - 0.5)] = '0';
+	map[(int)(g_game.posx - 0.5)][(int)(g_game.posy - 0.5)] = '0';
 }
 
 int	check_invalid_characters(void)

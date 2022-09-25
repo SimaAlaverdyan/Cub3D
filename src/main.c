@@ -14,16 +14,16 @@
 
 void	mlx_start(void)
 {
-	game.mlx = mlx_init();
+	g_game.mlx = mlx_init();
 	set_mlx_images();
 	set_mlx_addresses();
-	game.mlx_win = mlx_new_window(game.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-	mlx_put_image_to_window(game.mlx, game.mlx_win, t_map.data.img, 0, 0);
-	mlx_hook(game.mlx_win, 2, 1L << 0, ft_mlx_pressed, &game.mlx);
-	mlx_hook(game.mlx_win, 3, 1L << 1, ft_mlx_released, &game.mlx);
-	mlx_hook(game.mlx_win, 17, 1L << 17, ft_exit, NULL);
-	mlx_loop_hook(game.mlx, start, &game);
-	mlx_loop(game.mlx);
+	g_game.mlx_win = mlx_new_window(g_game.mlx, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
+	mlx_put_image_to_window(g_game.mlx, g_game.mlx_win, t_map.data.img, 0, 0);
+	mlx_hook(g_game.mlx_win, 2, 1L << 0, ft_mlx_pressed, &g_game.mlx);
+	mlx_hook(g_game.mlx_win, 3, 1L << 1, ft_mlx_released, &g_game.mlx);
+	mlx_hook(g_game.mlx_win, 17, 1L << 17, ft_exit, NULL);
+	mlx_loop_hook(g_game.mlx, start, &g_game);
+	mlx_loop(g_game.mlx);
 }
 
 int	main(int argc, char **argv)

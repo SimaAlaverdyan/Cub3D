@@ -41,8 +41,8 @@ void	ft_clear(void)
 void	ft_free(void)
 {
 	free_matrix(t_map.matrix);
-	free(game.mlx);
-	free(game.mlx_win);
+	free(g_game.mlx);
+	free(g_game.mlx_win);
 	free(t_map.data.path);
 	free(t_map.data.img);
 	free(t_map.data.addr);
@@ -65,7 +65,7 @@ int	start(void)
 	read_keys();
 	ft_clear();
 	ft_raycasting();
-	mlx_put_image_to_window(game.mlx, game.mlx_win, t_map.data.img, 0, 0);
-	mlx_do_sync(game.mlx);
+	mlx_put_image_to_window(g_game.mlx, g_game.mlx_win, t_map.data.img, 0, 0);
+	mlx_do_sync(g_game.mlx);
 	return (0);
 }

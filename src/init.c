@@ -18,13 +18,13 @@ void	init(int fd)
 	t_map.keys.s = 0;
 	t_map.keys.d = 0;
 	t_map.keys.a = 0;
-	game.dirX = 0;
-	game.dirY = 0;
-	game.moveSpeed = 0.08;
-	game.planeX = 0;
-	game.planeY = 0;
-	game.rotSpeed = 0.04;
-	game.posX = 0;
-	game.posY = 0;
+	g_game.dirx = 0;
+	g_game.diry = 0;
+	g_game.move_speed = 0.08;
+	g_game.planex = 0;
+	g_game.planey = 0;
+	g_game.rot_speed = 0.04;
+	g_game.posx = 0;
+	g_game.posy = 0;
 	get_cols(fd);
 }

@@ -15,11 +15,11 @@
 void	raycasting_vars(int x)
 {
 	vars.hit = 0;
-	game.cameraX = 2 * x / (double)WIN_WIDTH - 1;
-	game.rayDirX = game.dirX + game.planeX * game.cameraX;
-	game.rayDirY = game.dirY + game.planeY * game.cameraX;
-	game.mapX = (int)game.posX;
-	game.mapY = (int)game.posY;
-	game.deltaDistX = fabs(1 / game.rayDirX);
-	game.deltaDistY = fabs(1 / game.rayDirY);
+	g_game.camera_x = 2 * x / (double)WIN_WIDTH - 1;
+	g_game.ray_dir_x = g_game.dirx + g_game.planex * g_game.camera_x;
+	g_game.ray_dir_y = g_game.diry + g_game.planey * g_game.camera_x;
+	g_game.mapx = (int)g_game.posx;
+	g_game.mapy = (int)g_game.posy;
+	g_game.delta_dist_x = fabs(1 / g_game.ray_dir_x);
+	g_game.delta_dist_y = fabs(1 / g_game.ray_dir_y);
 }

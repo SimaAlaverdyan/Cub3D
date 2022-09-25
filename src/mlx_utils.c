@@ -25,14 +25,14 @@ int	get_color(t_img *data, int x, int y)
 
 void	set_mlx_images(void)
 {
-	t_map.data.img = mlx_new_image(game.mlx, WIN_WIDTH, WIN_HEIGHT);
-	t_map.no.img = mlx_xpm_file_to_image(game.mlx, t_map.no.path,
+	t_map.data.img = mlx_new_image(g_game.mlx, WIN_WIDTH, WIN_HEIGHT);
+	t_map.no.img = mlx_xpm_file_to_image(g_game.mlx, t_map.no.path,
 			&t_map.no.width, &t_map.no.height);
-	t_map.so.img = mlx_xpm_file_to_image(game.mlx, t_map.so.path,
+	t_map.so.img = mlx_xpm_file_to_image(g_game.mlx, t_map.so.path,
 			&t_map.so.width, &t_map.so.height);
-	t_map.we.img = mlx_xpm_file_to_image(game.mlx, t_map.we.path,
+	t_map.we.img = mlx_xpm_file_to_image(g_game.mlx, t_map.we.path,
 			&t_map.we.width, &t_map.we.height);
-	t_map.ea.img = mlx_xpm_file_to_image(game.mlx, t_map.ea.path,
+	t_map.ea.img = mlx_xpm_file_to_image(g_game.mlx, t_map.ea.path,
 			&t_map.ea.width, &t_map.ea.height);
 }
 

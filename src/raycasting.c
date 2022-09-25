@@ -14,25 +14,27 @@
 
 void	ft_ray_dirs(void)
 {
-	if (game.rayDirX < 0)
+	if (g_game.ray_dir_x < 0)
 	{
-		game.stepX = -1;
-		game.sideDistX = (game.posX - game.mapX) * game.deltaDistX;
+		g_game.step_x = -1;
+		g_game.side_dist_x = (g_game.posx - g_game.mapx) * g_game.delta_dist_x;
 	}
 	else
 	{
-		game.stepX = 1;
-		game.sideDistX = (game.mapX - game.posX + 1.0) * game.deltaDistX;
+		g_game.step_x = 1;
+		g_game.side_dist_x = (g_game.mapx - g_game.posx + 1.0)
+			* g_game.delta_dist_x;
 	}
-	if (game.rayDirY < 0)
+	if (g_game.ray_dir_y < 0)
 	{
-		game.stepY = -1;
-		game.sideDistY = (game.posY - game.mapY) * game.deltaDistY;
+		g_game.step_y = -1;
+		g_game.side_dist_y = (g_game.posy - g_game.mapy) * g_game.delta_dist_y;
 	}
 	else
 	{
-		game.stepY = 1;
-		game.sideDistY = (game.mapY - game.posY + 1.0) * game.deltaDistY;
+		g_game.step_y = 1;
+		g_game.side_dist_y = (g_game.mapy - g_game.posy + 1.0)
+			* g_game.delta_dist_y;
 	}
 }
 
@@ -40,50 +42,50 @@ void	ft_wall_hit(void)
 {
 	while (vars.hit == 0)
 	{
-		if (game.sideDistX < game.sideDistY)
+		if (g_game.side_dist_x < g_game.side_dist_y)
 		{
-			game.sideDistX += game.deltaDistX;
-			game.mapX += game.stepX;
+			g_game.side_dist_x += g_game.delta_dist_x;
+			g_game.mapx += g_game.step_x;
 			vars.side = 0;
 		}
 		else
 		{
-			game.sideDistY += game.deltaDistY;
-			game.mapY += game.stepY;
+			g_game.side_dist_y += g_game.delta_dist_y;
+			g_game.mapy += g_game.step_y;
 			vars.side = 1;
 		}
-		if (t_map.matrix[game.mapX][game.mapY] == '1')
+		if (t_map.matrix[g_game.mapx][g_game.mapy] == '1')
 			vars.hit = 1;
 	}
 	if (vars.side == 0)
-		game.perpWallDist = (game.mapX - game.posX + (1 - game.stepX)
-				/ 2) / game.rayDirX;
+		g_game.perp_wall_dist = (g_game.mapx - g_game.posx + (1 - g_game.step_x)
+				/ 2) / g_game.ray_dir_x;
 	else
-		game.perpWallDist = (game.mapY - game.posY + (1 - game.stepY)
-				/ 2) / game.rayDirY;
+		g_game.perp_wall_dist = (g_game.mapy - g_game.posy + (1 - g_game.step_y)
+				/ 2) / g_game.ray_dir_y;
 }
 
 void	ft_init_vars(void)
 {
-	vars.lineHeight = (int)(WIN_HEIGHT / game.perpWallDist);
-	vars.drawStart = -vars.lineHeight / 2 + WIN_HEIGHT / 2;
-	vars.drawEnd = vars.lineHeight / 2 + WIN_HEIGHT / 2;
-	if (vars.drawStart < 0)
-		vars.drawStart = 0;
-	if (vars.drawEnd >= WIN_HEIGHT)
-		vars.drawEnd = WIN_HEIGHT - 1;
+	vars.line_height = (int)(WIN_HEIGHT / g_game.perp_wall_dist);
+	vars.draw_start = -vars.line_height / 2 + WIN_HEIGHT / 2;
+	vars.draw_end = vars.line_height / 2 + WIN_HEIGHT / 2;
+	if (vars.draw_start < 0)
+		vars.draw_start = 0;
+	if (vars.draw_end >= WIN_HEIGHT)
+		vars.draw_end = WIN_HEIGHT - 1;
 	if (vars.side == 0)
-		vars.wallX = game.posY + game.perpWallDist * game.rayDirY;
+		vars.wall_x = g_game.posy + g_game.perp_wall_dist * g_game.ray_dir_y;
 	else
-		vars.wallX = game.posX + game.perpWallDist * game.rayDirX;
-	vars.wallX -= floor((vars.wallX));
-	vars.texX = (int)(vars.wallX * (double)(TEXTURE_SIZE));
-	if (vars.side == 0 && game.rayDirX > 0)
-		vars.texX = TEXTURE_SIZE - vars.texX - 1;
-	if (vars.side == 1 && game.rayDirY < 0)
-		vars.texX = TEXTURE_SIZE - vars.texX - 1;
-	vars.step = 1.0 * TEXTURE_SIZE / vars.lineHeight;
-	vars.texPos = (vars.drawStart - WIN_HEIGHT / 2 + vars.lineHeight
+		vars.wall_x = g_game.posx + g_game.perp_wall_dist * g_game.ray_dir_x;
+	vars.wall_x -= floor((vars.wall_x));
+	vars.tex_x = (int)(vars.wall_x * (double)(TEXTURE_SIZE));
+	if (vars.side == 0 && g_game.ray_dir_x > 0)
+		vars.tex_x = TEXTURE_SIZE - vars.tex_x - 1;
+	if (vars.side == 1 && g_game.ray_dir_y < 0)
+		vars.tex_x = TEXTURE_SIZE - vars.tex_x - 1;
+	vars.step = 1.0 * TEXTURE_SIZE / vars.line_height;
+	vars.tex_pos = (vars.draw_start - WIN_HEIGHT / 2 + vars.line_height
 			/ 2) * vars.step;
 }
 
@@ -91,24 +93,24 @@ void	ft_draw(int *x)
 {
 	int	y;
 
-	y = vars.drawStart;
-	while (y < vars.drawEnd)
+	y = vars.draw_start;
+	while (y < vars.draw_end)
 	{
-		vars.texY = (int)vars.texPos & (TEXTURE_SIZE - 1);
-		vars.texPos += vars.step;
+		vars.tex_y = (int)vars.tex_pos & (TEXTURE_SIZE - 1);
+		vars.tex_pos += vars.step;
 		if (vars.side == 0)
 		{
-			if (game.stepX > 0)
-				vars.color = get_color(&t_map.so, vars.texX, vars.texY);
+			if (g_game.step_x > 0)
+				vars.color = get_color(&t_map.so, vars.tex_x, vars.tex_y);
 			else
-				vars.color = get_color(&t_map.no, vars.texX, vars.texY);
+				vars.color = get_color(&t_map.no, vars.tex_x, vars.tex_y);
 		}
 		else
 		{
-			if (game.stepY > 0)
-				vars.color = get_color(&t_map.we, vars.texX, vars.texY);
+			if (g_game.step_y > 0)
+				vars.color = get_color(&t_map.we, vars.tex_x, vars.tex_y);
 			else
-				vars.color = get_color(&t_map.ea, vars.texX, vars.texY);
+				vars.color = get_color(&t_map.ea, vars.tex_x, vars.tex_y);
 		}
 		my_mlx_pixel_put(&t_map.data, *x, y, vars.color);
 		y++;
@@ -130,16 +132,16 @@ void	ft_raycasting(void)
 		ft_wall_hit();
 		ft_init_vars();
 		y = 0;
-		while (y++ < vars.drawStart)
+		while (y++ < vars.draw_start)
 			my_mlx_pixel_put(&t_map.data, x, y, rgb(t_map.c_color));
 		ft_draw(&x);
-		y = vars.drawEnd;
+		y = vars.draw_end;
 		while (y < WIN_HEIGHT)
 		{
 			my_mlx_pixel_put(&t_map.data, x, y, rgb(t_map.f_color));
 			y++;
 		}
-		vars.BUFFER[x] = game.perpWallDist;
+		vars.buffer[x] = g_game.perp_wall_dist;
 		x++;
 	}
 }

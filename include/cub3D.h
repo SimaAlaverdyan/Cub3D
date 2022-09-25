@@ -68,27 +68,27 @@ struct s_map
 typedef struct s_game
 {
 	void		*mlx;
-	void		_win;
-	double		pos;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	int			mapX;
-	int			mapY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	double		moveSpeed;
-	double		rotSpeed;
-	int			stepX;
-	int			stepY;
+	void		*mlx_win;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			mapx;
+	int			mapy;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	double		move_speed;
+	double		rot_speed;
+	int			step_x;
+	int			step_y;
 	int			s_count;
 	char		player_view;
 }				t_game;
@@ -97,20 +97,19 @@ struct	s_vars
 {
 	int		hit;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	int		texX;
-	int		texY;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		tex_x;
+	int		tex_y;
 	int		color;
-	double	BUFFER[WIN_WIDTH];
-	double	wallX;
+	double	buffer[WIN_WIDTH];
+	double	wall_x;
 	double	step;
-	double	texPos;
+	double	tex_pos;
 }		vars;
 
-t_game	game;
-t_keys	keys;
+t_game	g_game;
 
 int			ft_check_extension(char *path, char *ext);
 int			get_next_line(int fd, char **line);
